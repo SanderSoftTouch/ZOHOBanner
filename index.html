@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/57534a1e8b.js" crossorigin="anonymous"></script>
     <title>ZOHOBanner</title>
-    <style>
+    <link rel="stylesheet" href="Index.css">
+    <!--<style>
         body{
             background-color: whitesmoke;
         }
@@ -61,7 +62,7 @@
             font-style: oblique;
             padding-left: 5px;
         }
-    </style>
+    </style>-->
 </head>
 <body>
     <div class="copy" id="kopy" style="font-size: 13px; font-family: Arial, Helvetica, Verdana, sans-serif">
@@ -141,29 +142,45 @@
         <br>
         <input type="submit" value="Submit">
      -->
-
-     <button class="buttons" onclick="exchange()"><i class="fa-solid fa-rotate-right"></i></button>
-     <button class="buttons" onclick="copy()"><i class="fa-regular fa-copy"></i></button>
-     <button class="buttons"><i class="fa-solid fa-gear"></i></button>
+     <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" id="closePopupBtn">&times;</span>
+            <h2>Settings</h2>
+            <p>This is a sample popup content.</p>
+        </div>
+    </div>
     
-
-     <form>
+     <div class="container">
+        <div class="containerElement">
+            <div class="exampleText">Voorbeeld</div>              
+        </div>
+        <div class="containerElement">
+            <button class="buttons" onclick="exchange()"><i class="fa-solid fa-rotate-right"></i></button>      <!--Refresh button-->
+            <button class="buttons" onclick="copy()"><i class="fa-regular fa-copy"></i></button>                <!--Copy button-->
+            <button class="buttons" onclick="settings()"><i class="fa-solid fa-gear"></i></button>      <!--Settings button-->
+            <!--<button class="buttons" onclick="reset()"><i class="fa-solid fa-trash"></i></button>                Reset button
+            <button class="buttons" onclick="darkModeToggle()"><i class="fa-solid fa-toggle-on"></i></button>   Light mode button-->
+        </div>
+     </div>
+     
+     <form class="formContainer">
+        <div class="formContainerElement">
+            <input class="inputField1" type="text" id="fline" placeholder="First Line" name="fline" value=""><br>
+            <input class="inputField1" type="text" id="sline" placeholder="Second Line" name="sline" value=""><br>
+            <input class="inputField1" type="text" id="naam_" placeholder="Naam" name="naam" value=""><br>
+            <input class="inputField1" type="text" id="Taak_" placeholder="Taak / Job" name="Taak_" value=""><br>
+            <input class="inputField1" type="text" id="Mail_" placeholder="Email" name="Mail_" value=""><br>
+        </div>
         <br>
-
-        <input class="inputField1" type="text" id="fline" placeholder="First Line" name="fline" value=""><br>
-        <input class="inputField1" type="text" id="sline" placeholder="Second Line" name="sline" value=""><br>
-        <input class="inputField1" type="text" id="naam_" placeholder="Naam" name="naam" value=""><br>
-        <input class="inputField1" type="text" id="Taak_" placeholder="Taak / Job" name="Taak_" value=""><br>
-        <input class="inputField1" type="text" id="Mail_" placeholder="Email" name="Mail_" value=""><br>
-
-        <br><br>
-
-        <label class="inputText" for="url">Foto profiel</label><br>
-        <input class="inputField2" type="text" id="profo_" name="profo" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
-        <label class="inputText" for="url">Foto banner</label><br>
-        <input class="inputField2" type="text" id="Banner_" name="Banner" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
-        <label class="inputText" for="url">Hyperlink banner</label><br>
-        <input class="inputField2" type="text" id="url" name="url" value=""><br>
+        <div class="formContainerElement">
+            <label class="inputText" for="url">Foto profiel</label><br>
+            <input class="inputField2" type="text" id="profo_" name="profo" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
+            <label class="inputText" for="url">Foto banner</label><br>
+            <input class="inputField2" type="text" id="Banner_" name="Banner" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
+            <label class="inputText" for="url">Hyperlink banner</label><br>
+            <input class="inputField2" type="text" id="url" name="url" value=""><br>
+        </div>
+        <br> 
     </form>
 
      <!-- <form>
