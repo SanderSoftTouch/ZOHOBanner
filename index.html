@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/57534a1e8b.js" crossorigin="anonymous"></script>
     <title>ZOHOBanner</title>
     <style>
         .copy{
-            border: 1px solid black;
+            border: 1px solid #0496b0;
             padding: 10px;
+        }
+
+        .buttons{
+            background: none;
+            border: none;
+            color: #0496b0;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            font-size:  25px;
+            cursor: pointer;
+        }
+
+        .buttons:hover {
+            background-color: #0496b0;
+            color: white;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -90,7 +107,9 @@
         <input type="submit" value="Submit">
      -->
 
-     <br><button onclick="copy()">Kopie (voor plakkie)</button><br><br>
+     <button class="buttons" onclick="exchange()"><i class="fa-solid fa-rotate-right"></i></button>
+     <button class="buttons" onclick="copy()"><i class="fa-regular fa-copy"></i></button>
+    
      <form>
         <label for="fline">Eerste begroetingslijn</label><br>
         <input type="text" id="fline" name="fline" value=""><br>
@@ -109,7 +128,6 @@
         <label for="url">URL voor Banner</label><br>
         <input type="text" id="url" name="url" value=""><br><br>
     </form>
-    <button onclick="exchange()">Aanpassen</button>
 
     <script src="./Zoho.js"></script>
 </body>
