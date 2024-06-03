@@ -1,12 +1,22 @@
 body{
     background-color: whitesmoke;
+    font-size: 13px; font-family: Arial, Helvetica, Verdana, sans-serif;
 }
 
-.copy{
+.copyWhite{
     border: 2px solid #0496b0;
     border-radius: 10px;
     padding: 10px;
+    color: black;
     background-color: white;
+}
+
+.copyBlack{
+    border: 2px solid #0496b0;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    background-color: rgb(50, 50, 50);
 }
 
 .buttons{
@@ -19,6 +29,14 @@ body{
     cursor: pointer;
 }
 
+.darkmodeButton{
+    display: none;
+}
+
+.lightmodeButton{
+    display: t;
+}
+
 .buttons:hover {
     background-color: #0496b0;
     color: white;
@@ -26,7 +44,7 @@ body{
 }
 .inputText {
     width: auto;
-    margin-bottom: 3px;
+    padding-bottom: 10px;
     color: zwart;
     font-size: 20px;
 }
@@ -73,7 +91,7 @@ body{
 
 /*POPUP*/
 .popup {
-    display: flex; /*Flex wnr zichtbaar, none wnr hidden*/
+    display: none; /*Flex wnr zichtbaar, none wnr hidden*/
     position: fixed;
     left: 0;
     top: 0;
@@ -103,3 +121,4 @@ body{
     font-size: 20px;
     cursor: pointer;
 }
+
