@@ -41,7 +41,18 @@
             font-size: 20px;
         }
 
-        .inputField {
+        .inputField1 {
+            border: 1px solid #0496b0;
+            width: 40%;
+            min-width: 150px;
+            color: #044c59;
+            border-radius: 5px;
+            margin-bottom:  10px;
+            font-style: oblique;
+            padding-left: 5px;
+        }
+
+        .inputField2 {
             border: 1px solid #0496b0;
             width: 80%;
             color: #044c59;
@@ -133,8 +144,29 @@
 
      <button class="buttons" onclick="exchange()"><i class="fa-solid fa-rotate-right"></i></button>
      <button class="buttons" onclick="copy()"><i class="fa-regular fa-copy"></i></button>
+     <button class="buttons"><i class="fa-solid fa-gear"></i></button>
     
+
      <form>
+        <br>
+
+        <input class="inputField1" type="text" id="fline" placeholder="First Line" name="fline" value=""><br>
+        <input class="inputField1" type="text" id="sline" placeholder="Second Line" name="sline" value=""><br>
+        <input class="inputField1" type="text" id="naam_" placeholder="Naam" name="naam" value=""><br>
+        <input class="inputField1" type="text" id="Taak_" placeholder="Taak / Job" name="Taak_" value=""><br>
+        <input class="inputField1" type="text" id="Mail_" placeholder="Email" name="Mail_" value=""><br>
+
+        <br><br>
+
+        <label class="inputText" for="url">Foto profiel</label><br>
+        <input class="inputField2" type="text" id="profo_" name="profo" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
+        <label class="inputText" for="url">Foto banner</label><br>
+        <input class="inputField2" type="text" id="Banner_" name="Banner" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
+        <label class="inputText" for="url">Hyperlink banner</label><br>
+        <input class="inputField2" type="text" id="url" name="url" value=""><br>
+    </form>
+
+     <!-- <form>
         <label class="inputText" for="fline">Eerste begroetingslijn</label><br>
         <input class="inputField" type="text" id="fline" name="fline" value=""><br>
         <label class="inputText" for="sline">Tweede begroetingslijn</label><br>
@@ -151,7 +183,7 @@
         <input class="inputField" type="text" id="Banner_" name="Banner" placeholder="Eerst foto uploaden in Zoho, link hier plakken"><br>
         <label class="inputText" for="url">URL voor Banner</label><br>
         <input class="inputField" type="text" id="url" name="url" value=""><br><br>
-    </form>
+    </form>-->
 
     <script src="./Zoho.js"></script>
 </body>
