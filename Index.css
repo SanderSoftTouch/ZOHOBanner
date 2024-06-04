@@ -29,14 +29,6 @@ body{
     cursor: pointer;
 }
 
-.darkmodeButton{
-    display: none;
-}
-
-.lightmodeButton{
-    display: t;
-}
-
 .buttons:hover {
     background-color: #0496b0;
     color: white;
