@@ -32,15 +32,13 @@ class storageItem {
 window.addEventListener("load", init)
 
 function init(){
-    let persoonlijkeInstelling = localStorage.getItem("persoonlijkeInstelling");
-    if(persoonlijkeInstelling == null){
+    if(localStorage.getItem("persoonlijkeInstelling") == null){
         instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.href);
         localStorage.setItem("init_instelling", JSON.stringify(instelling));
         localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
         instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     }
-    console.log(persoonlijkeInstelling, "test", instelling)
 
     //Tekst aanpassen inputvelden
     fline.value = instelling.begroeting1
