@@ -64,7 +64,7 @@ function init(){
 }
 
 function copy(){
-    exchange();
+    exchange()
     var to_copy = kopy.outerHTML;
     //console.log(to_copy);
     navigator.clipboard.writeText(to_copy);
@@ -76,7 +76,6 @@ function exchange(){
     instelling = new storageItem(fline.value, sline.value, profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value)
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     var fotoArr = [instelling.profo, instelling.banner_foto]
-    zohoLinkChecker(fotoArr)
     begroeting1.innerText = instelling.begroeting1
     begroeting2.innerText = instelling.begroeting2
     profo.firstChild.src = instelling.profo
@@ -86,18 +85,18 @@ function exchange(){
     Mail.firstChild.href = Mailto
     Banner.src = instelling.banner_foto
     Banner.parentElement.parentElement.href = instelling.banner_link
+    //zohoLinkChecker(fotoArr)
 }
 
 function zohoLinkChecker(fotoArr){
     var checkers = document.getElementsByClassName("check");
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
+    instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     zoholink = instelling.profo.split("&")[0]
-    console.log(zoholink)
     for(var i = 0; i < checkers.length; i++){
-        if(zoholink !== fotoArr[i].split("&")){
-            console.log(checkers, fotoArr[i].split("&"))
-        } else {
-            console.log("werkt")
+        if(zoholink !== fotoArr[i].split("&")[0]){
+            checkers[i].hidden = false;
+            console.log(checkers[i], checkers[i].hidden)
         }
     }
 }
