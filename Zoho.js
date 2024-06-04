@@ -1,3 +1,4 @@
+var kopy = document.getElementById("kopy");
 var begroeting1 = document.getElementById("begroeting1");
 var begroeting2 = document.getElementById("begroeting2");
 var profo = document.getElementById("profo");
@@ -65,7 +66,8 @@ function init(){
 }
 
 function copy(){
-    var to_copy = document.getElementById("kopy").outerHTML;
+    var to_copy = kopy.outerHTML;
+    //console.log(to_copy);
     navigator.clipboard.writeText(to_copy);
     alert("Gekopy't");
 }
@@ -85,4 +87,47 @@ function exchange(){
     Banner.parentElement.parentElement.href = instelling.banner_link
 }
 
+function reset(){
+    instelling = JSON.parse(localStorage.getItem("init_instelling"));
+
+    //Tekst aanpassen inputvelden
+    fline.value = instelling.begroeting1
+    sline.value = instelling.begroeting2
+    profo_.value = instelling.profo
+    naam_.value = instelling.naam
+    Taak_.value = instelling.taak
+    Mail_.value = instelling.mail
+    Banner_.value = instelling.banner_foto
+    url.value = instelling.banner_link
+
+    //Tekst aanpassen van copy-tekst
+    var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
+    begroeting1.innerText = instelling.begroeting1
+    begroeting2.innerText = instelling.begroeting2
+    profo.firstChild.src = instelling.profo
+    naam.innerText = instelling.naam
+    Taak.innerText = instelling.taak
+    Mail.firstChild.innerText = instelling.mail
+    Mail.firstChild.href = Mailto
+    Banner.src = instelling.banner_foto
+    Banner.parentElement.parentElement.href = instelling.banner_link
+}
+
+function darkModeToggle(button){
+    var toggleMode = button.firstChild.classList[1].split("-");
+    var toggleResult;
+    var darkClass;
+    if(toggleMode[2] == "on"){
+        toggleMode[2] = "off"
+        darkClass = "copyWhite"
+    } else {
+        toggleMode[2] = "on"
+        darkClass = "copyBlack"
+    }
+    toggleResult = toggleMode.join("-");
+    button.firstChild.classList.remove(button.firstChild.classList[1])
+    button.firstChild.classList.add(toggleResult)
+    kopy.classList.remove(kopy.classList[0])
+    kopy.classList.add(darkClass);
+}
 
