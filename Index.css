@@ -29,14 +29,12 @@ body{
     cursor: pointer;
 }
 
-.darkmodeButton{
-    display: t;
-}
 .buttons:hover {
     background-color: #0496b0;
     color: white;
     border-radius: 5px;
 }
+
 .inputText {
     width: auto;
     padding-bottom: 10px;
