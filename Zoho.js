@@ -64,6 +64,7 @@ function init(){
 }
 
 function copy(){
+    exchange();
     var to_copy = kopy.outerHTML;
     //console.log(to_copy);
     navigator.clipboard.writeText(to_copy);
@@ -89,8 +90,15 @@ function exchange(){
 
 function zohoLinkChecker(fotoArr){
     var checkers = document.getElementsByClassName("check");
+    instelling = JSON.parse(localStorage.getItem("init_instelling"));
+    zoholink = instelling.profo.split("&")[0]
+    console.log(zoholink)
     for(var i = 0; i < checkers.length; i++){
-        console.log(checkers, fotoArr[i].split("&"))
+        if(zoholink !== fotoArr[i].split("&")){
+            console.log(checkers, fotoArr[i].split("&"))
+        } else {
+            console.log("werkt")
+        }
     }
 }
 
