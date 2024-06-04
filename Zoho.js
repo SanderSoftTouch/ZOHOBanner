@@ -32,9 +32,10 @@ window.addEventListener("load", init)
 
 function init(){
     let persoonlijkeInstelling = localStorage.getItem("persoonlijkeInstelling");
-    instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.href);
     if(persoonlijkeInstelling == null){
-        localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
+        instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.href);
+        localStorage.setItem("init_instelling", JSON.stringify(instelling));
+        localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
         instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     }
