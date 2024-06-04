@@ -95,8 +95,11 @@ function zohoLinkChecker(fotoArr){
     zoholink = instelling.profo.split("&")[0]
     for(var i = 0; i < checkers.length; i++){
         if(zoholink !== fotoArr[i].split("&")[0]){
-            checkers[i].hidden = false;
-            console.log(checkers[i], checkers[i].hidden)
+            console.log(checkers[i], checkers[i].hidden, checkers[i].innerText)
+            //checkers[i].hidden = false;
+        } else {
+            //checkers[i].hidden = true;
+            console.log("werkt")
         }
     }
 }
