@@ -85,21 +85,24 @@ function exchange(){
     Mail.firstChild.href = Mailto
     Banner.src = instelling.banner_foto
     Banner.parentElement.parentElement.href = instelling.banner_link
-    //zohoLinkChecker(fotoArr)
+    zohoLinkChecker(fotoArr)
 }
 
 function zohoLinkChecker(fotoArr){
     var checkers = document.getElementsByClassName("check");
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
     instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
-    zoholink = instelling.profo.split("&")[0]
+    zoholink = instelling.profo.split("&")[0].split("/")[2].split(":")[0]
+    console.log("voor if", zoholink)
     for(var i = 0; i < checkers.length; i++){
-        if(zoholink !== fotoArr[i].split("&")[0]){
-            console.log(checkers[i], checkers[i].hidden, checkers[i].innerText)
+        
+        console.log("in if", fotoArr[i].split("&")[0].split("/")[2].split(":")[0])
+        if(zoholink !== fotoArr[i].split("&")[0].split("/")[2].split(":")[0]){
             //checkers[i].hidden = false;
+            console.log("true", checkers[i].innerText)
         } else {
             //checkers[i].hidden = true;
-            console.log("werkt")
+            console.log("false", checkers[i].innerText)
         }
     }
 }
