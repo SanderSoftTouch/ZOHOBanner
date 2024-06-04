@@ -1,9 +1,124 @@
-.copy{
-    border: 1px solid black;
-    padding: 10px;
+body{
+    background-color: whitesmoke;
+    font-size: 13px; font-family: Arial, Helvetica, Verdana, sans-serif;
 }
 
-/*input{
-    width: 1000px;
-}*/
+.copyWhite{
+    border: 2px solid #0496b0;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    background-color: white;
+}
+
+.copyBlack{
+    border: 2px solid #0496b0;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
+    background-color: #212121;
+}
+
+.buttons{
+    background: none;
+    border: none;
+    color: #0496b0;
+    font-size:  25px;
+    width: 50px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.darkmodeButton{
+    display: none;
+}
+
+.lightmodeButton{
+    display: t;
+}
+
+.buttons:hover {
+    background-color: #0496b0;
+    color: white;
+    border-radius: 5px;
+}
+.inputText {
+    width: auto;
+    padding-bottom: 10px;
+    color: zwart;
+    font-size: 20px;
+}
+
+.inputField1 {
+    border: 1px solid #0496b0;
+    width: 40%;
+    min-width: 150px;
+    color: #044c59;
+    border-radius: 5px;
+    margin-bottom:  10px;
+    font-style: oblique;
+    padding-left: 5px;
+}
+
+.inputField2 {
+    border: 1px solid #0496b0;
+    width: 80%;
+    color: #044c59;
+    border-radius: 5px;
+    margin-bottom:  10px;
+    font-style: oblique;
+    padding-left: 5px;
+}
+
+.exampleText{
+    color: #0496b0;
+}
+
+.container{
+    margin-top: 5px;
+    display: flex;
+    width: 100%;
+}
+
+.containerElement{
+    width: 50%;
+}
+
+.containerElement:nth-of-type(2) {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/*POPUP*/
+.popup {
+    display: none; /*Flex wnr zichtbaar, none wnr hidden*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 500px;
+    max-width: 80%;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
 
