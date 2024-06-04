@@ -32,8 +32,9 @@ class storageItem {
 window.addEventListener("load", init)
 
 function init(){
+    console.log(Banner.src, Banner.parentElement.parentElement.parentElement.href)
     if(localStorage.getItem("persoonlijkeInstelling") == null){
-        instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.href);
+        instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href);
         localStorage.setItem("init_instelling", JSON.stringify(instelling));
         localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
