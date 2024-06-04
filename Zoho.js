@@ -85,7 +85,7 @@ function exchange(){
     Mail.firstChild.href = Mailto
     Banner.src = instelling.banner_foto
     Banner.parentElement.parentElement.href = instelling.banner_link
-    zohoLinkChecker(fotoArr)
+    //zohoLinkChecker(fotoArr)
 }
 
 function zohoLinkChecker(fotoArr){
