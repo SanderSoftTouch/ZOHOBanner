@@ -74,6 +74,7 @@ function exchange(){
     var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
     instelling = new storageItem(fline.value, sline.value, profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value)
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
+    
     begroeting1.innerText = instelling.begroeting1
     begroeting2.innerText = instelling.begroeting2
     profo.firstChild.src = instelling.profo
@@ -83,6 +84,11 @@ function exchange(){
     Mail.firstChild.href = Mailto
     Banner.src = instelling.banner_foto
     Banner.parentElement.parentElement.href = instelling.banner_link
+}
+
+function zohoLinkChecker(){
+    var checkers = document.classList("check");
+    console.log(checkers)
 }
 
 function reset(){
