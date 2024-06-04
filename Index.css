@@ -32,7 +32,6 @@ body{
 .darkmodeButton{
     display: t;
 }
-
 .buttons:hover {
     background-color: #0496b0;
     color: white;
