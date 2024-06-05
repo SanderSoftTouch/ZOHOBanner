@@ -68,6 +68,19 @@ function setHTML(sItem){
     Banner.parentElement.parentElement.href = sItem.banner_link
 }
 
+async function checkLink(url) {
+    try {
+      let response = await fetch(url, { method: 'HEAD' });
+      if (response.ok) {
+        console.log(`Valid URL: ${url}`);
+      } else {
+        console.log(`Invalid URL: ${url}`);
+      }
+    } catch (error) {
+      console.log(`Error checking URL: ${url} - ${error}`);
+    }
+}
+
 window.addEventListener("load", init);
 document.addEventListener("DOMContentLoaded", function() {
     inputvelden.forEach(function(input) {
@@ -76,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
 });
+
 
 function init(){
     var begroetingenInnerText = []
