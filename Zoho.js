@@ -87,18 +87,11 @@ function init(){
 function copy(){
     exchange()
     var to_copy = kopy.outerHTML;
-    //console.log(to_copy);
     navigator.clipboard.writeText(to_copy);
     alert("Gekopy't");
 }
 
 function exchange(){
-    var test = line.value
-    var test2 = begroetingen[0].cloneNode().outerHTML
-    var test3 = begroetingen[0].parentElement
-    test2.innerText += "test"
-     //console.log(test.split("\n"), test2, test3)
-    var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
     instelling = new storageItem(line.value.split("\n"), profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     var fotoArr = [instelling.profo, instelling.banner_foto]
@@ -106,7 +99,7 @@ function exchange(){
     setHTML(instelling);
 }
 
-function zohoLinkChecker(fotoArr){
+/*function zohoLinkChecker(fotoArr){
     var checkers = document.getElementsByClassName("check");
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
     instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
@@ -123,7 +116,7 @@ function zohoLinkChecker(fotoArr){
             console.log("false", checkers[i].innerText)
         }
     }
-}
+}*/
 
 function reset(){
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
