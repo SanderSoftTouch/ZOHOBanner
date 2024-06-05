@@ -8,14 +8,15 @@ var Taak = document.getElementById("Taak");
 var Mail = document.getElementById("Mail");
 var Banner = document.getElementById("Banner");
 var line = document.getElementById("line");
-var fline = document.getElementById("fline");
-var sline = document.getElementById("sline");
+//var fline = document.getElementById("fline");
+//var sline = document.getElementById("sline");
 var profo_ = document.getElementById("profo_");
 var naam_ = document.getElementById("naam_");
 var Taak_ = document.getElementById("Taak_");
 var Mail_ = document.getElementById("Mail_");
 var Banner_ = document.getElementById("Banner_");
 var url = document.getElementById("url");
+var inputvelden = [line, profo_, naam_, Taak_, Mail_, Banner_, url]
 let instelling;
 
 class storageItem {
@@ -92,31 +93,28 @@ function copy(){
 }
 
 function exchange(){
-    instelling = new storageItem(line.value.split("\n"), profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value) //fline.value, sline.value, 
+    var fotoArr = [profo_.value.split("&amp;").join("&"), Banner_.value.split("&amp;").join("&")]
+    fotoArr = zohoLinkChecker(fotoArr)
+    instelling = new storageItem(line.value.split("\n"), fotoArr[0], naam_.value, Taak_.value, Mail_.value, fotoArr[1], url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
-    var fotoArr = [instelling.profo, instelling.banner_foto]
-    //zohoLinkChecker(fotoArr)
     setHTML(instelling);
 }
 
-/*function zohoLinkChecker(fotoArr){
+function zohoLinkChecker(fotoArr){
     var checkers = document.getElementsByClassName("check");
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
-    instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
+    var old_fotoArr = [instelling.profo, instelling.banner_foto]
     zoholink = instelling.profo.split("&")[0].split("/")[2].split(":")[0]
-    console.log("voor if", zoholink)
     for(var i = 0; i < checkers.length; i++){
-        
-        console.log("in if", fotoArr[i].split("&")[0].split("/")[2].split(":")[0])
         if(zoholink !== fotoArr[i].split("&")[0].split("/")[2].split(":")[0]){
-            //checkers[i].hidden = false;
-            console.log("true", checkers[i].innerText)
+            checkers[i].hidden = false;
+            fotoArr[i] = old_fotoArr[i];
         } else {
-            //checkers[i].hidden = true;
-            console.log("false", checkers[i].innerText)
+            checkers[i].hidden = true;
         }
     }
-}*/
+    return fotoArr
+}
 
 function reset(){
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
