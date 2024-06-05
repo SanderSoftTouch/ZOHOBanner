@@ -16,7 +16,8 @@ var Taak_ = document.getElementById("Taak_");
 var Mail_ = document.getElementById("Mail_");
 var Banner_ = document.getElementById("Banner_");
 var url = document.getElementById("url");
-var inputvelden = [line, profo_, naam_, Taak_, Mail_, Banner_, url]
+var inputvelden = [line, profo_, naam_, Taak_, Mail_, Banner_, url];
+var checkers = document.getElementsByClassName("check");
 let instelling;
 
 class storageItem {
@@ -70,7 +71,7 @@ function setHTML(sItem){
 window.addEventListener("load", init);
 document.addEventListener("DOMContentLoaded", function() {
     inputvelden.forEach(function(input) {
-      input.addEventListener("blur", function(event) {
+      input.addEventListener("input", function(event) {
         exchange();
       });
     });
@@ -108,7 +109,6 @@ function exchange(){
 }
 
 function zohoLinkChecker(fotoArr){
-    var checkers = document.getElementsByClassName("check");
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
     var old_fotoArr = [instelling.profo, instelling.banner_foto]
     zoholink = instelling.profo.split("&")[0].split("/")[2].split(":")[0]
@@ -128,6 +128,9 @@ function reset(){
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     setValues(instelling);
     setHTML(instelling);
+    for(var i = 0; i < checkers.length; i++){
+        checkers[i].hidden = true;
+    }
 }
 
 function darkModeToggle(button){
