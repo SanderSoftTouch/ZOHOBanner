@@ -71,8 +71,7 @@ window.addEventListener("load", init)
 function init(){
     var begroetingenInnerText = []
     for(var i = 0; i < begroetingen.length; i++){
-        console.log(begroetingen[i].innerText)
-        begroetingenInnerText.push(begroetingen[i].innerText)
+        begroetingenInnerText.push(begroetingen[i].innerText);
     }
     if(localStorage.getItem("persoonlijkeInstelling") == null){
         instelling = new storageItem(begroetingenInnerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href); //begroeting1.innerText, begroeting2.innerText, 
@@ -98,7 +97,7 @@ function exchange(){
     var test2 = begroetingen[0].cloneNode().outerHTML
     var test3 = begroetingen[0].parentElement
     test2.innerText += "test"
-    console.log(test.split("\n"), test2, test3) //
+     //console.log(test.split("\n"), test2, test3)
     var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
     instelling = new storageItem(line.value.split("\n"), profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
