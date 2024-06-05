@@ -1,4 +1,5 @@
 var kopy = document.getElementById("kopy");
+var begroetingen = document.getElementsByClassName("begroeting");
 var begroeting1 = document.getElementById("begroeting1");
 var begroeting2 = document.getElementById("begroeting2");
 var profo = document.getElementById("profo");
@@ -6,6 +7,7 @@ var naam = document.getElementById("naam");
 var Taak = document.getElementById("Taak");
 var Mail = document.getElementById("Mail");
 var Banner = document.getElementById("Banner");
+var line = document.getElementById("line");
 var fline = document.getElementById("fline");
 var sline = document.getElementById("sline");
 var profo_ = document.getElementById("profo_");
@@ -17,9 +19,10 @@ var url = document.getElementById("url");
 let instelling;
 
 class storageItem {
-    constructor(begroeting1, begroeting2, profo, naam, taak, mail, banner_foto, banner_url) {
-        this.begroeting1 = begroeting1;
-        this.begroeting2 = begroeting2;
+    constructor(begroetingen, profo, naam, taak, mail, banner_foto, banner_url) {
+        this.begroetingen = begroetingen;
+        //this.begroeting1 = begroeting1; begroeting1, begroeting2, 
+        //this.begroeting2 = begroeting2;
         this.profo = profo;
         this.naam = naam;
         this.taak = taak;
@@ -29,39 +32,57 @@ class storageItem {
     }
 }
 
+//Tekst aanpassen inputvelden
+function setValues(sItem){
+    line.value = sItem.begroetingen.join("\n")
+    //fline.value = sItem.begroeting1
+    //sline.value = sItem.begroeting2
+    profo_.value = sItem.profo
+    naam_.value = sItem.naam
+    Taak_.value = sItem.taak
+    Mail_.value = sItem.mail
+    Banner_.value = sItem.banner_foto
+    url.value = sItem.banner_link
+}
+
+//Tekst aanpassen van html
+function setHTML(sItem){
+    var Mailto = "mailto:" + sItem.mail
+    var begroetingParent = begroetingen[0].parentElement
+    var begroetingTemplate = begroetingen[0].cloneNode().outerHTML
+    begroetingParent.innerHTML = ""
+    for(var i = 0; i < sItem.begroetingen.length; i++){
+        begroetingParent.innerHTML += begroetingTemplate;
+        begroetingParent.children[i].innerHTML = sItem.begroetingen[i] + "<br>";
+    }
+    //begroeting1.innerText = sItem.begroeting1
+    //begroeting2.innerText = sItem.begroeting2
+    profo.firstChild.src = sItem.profo
+    naam.innerText = sItem.naam
+    Taak.innerText = sItem.taak
+    Mail.firstChild.innerText = sItem.mail
+    Mail.firstChild.href = Mailto
+    Banner.src = sItem.banner_foto
+    Banner.parentElement.parentElement.href = sItem.banner_link
+}
+
 window.addEventListener("load", init)
 
 function init(){
-    console.log(Banner.src, Banner.parentElement.parentElement.parentElement.href)
+    var begroetingenInnerText = []
+    for(var i = 0; i < begroetingen.length; i++){
+        console.log(begroetingen[i].innerText)
+        begroetingenInnerText.push(begroetingen[i].innerText)
+    }
     if(localStorage.getItem("persoonlijkeInstelling") == null){
-        instelling = new storageItem(begroeting1.innerText, begroeting2.innerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href);
+        instelling = new storageItem(begroetingenInnerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href); //begroeting1.innerText, begroeting2.innerText, 
         localStorage.setItem("init_instelling", JSON.stringify(instelling));
         localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
         instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     }
-
-    //Tekst aanpassen inputvelden
-    fline.value = instelling.begroeting1
-    sline.value = instelling.begroeting2
-    profo_.value = instelling.profo
-    naam_.value = instelling.naam
-    Taak_.value = instelling.taak
-    Mail_.value = instelling.mail
-    Banner_.value = instelling.banner_foto
-    url.value = instelling.banner_link
-
-    //Tekst aanpassen van copy-tekst
-    var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
-    begroeting1.innerText = instelling.begroeting1
-    begroeting2.innerText = instelling.begroeting2
-    profo.firstChild.src = instelling.profo
-    naam.innerText = instelling.naam
-    Taak.innerText = instelling.taak
-    Mail.firstChild.innerText = instelling.mail
-    Mail.firstChild.href = Mailto
-    Banner.src = instelling.banner_foto
-    Banner.parentElement.parentElement.href = instelling.banner_link
+    setValues(instelling);
+    setHTML(instelling);
 }
 
 function copy(){
@@ -73,20 +94,17 @@ function copy(){
 }
 
 function exchange(){
+    var test = line.value
+    var test2 = begroetingen[0].cloneNode().outerHTML
+    var test3 = begroetingen[0].parentElement
+    test2.innerText += "test"
+    console.log(test.split("\n"), test2, test3) //
     var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
-    instelling = new storageItem(fline.value, sline.value, profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value)
+    instelling = new storageItem(line.value.split("\n"), profo_.value.split("&amp;").join("&"), naam_.value, Taak_.value, Mail_.value, Banner_.value.split("&amp;").join("&"), url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     var fotoArr = [instelling.profo, instelling.banner_foto]
-    begroeting1.innerText = instelling.begroeting1
-    begroeting2.innerText = instelling.begroeting2
-    profo.firstChild.src = instelling.profo
-    naam.innerText = instelling.naam
-    Taak.innerText = instelling.taak
-    Mail.firstChild.innerText = instelling.mail
-    Mail.firstChild.href = Mailto
-    Banner.src = instelling.banner_foto
-    Banner.parentElement.parentElement.href = instelling.banner_link
     //zohoLinkChecker(fotoArr)
+    setHTML(instelling);
 }
 
 function zohoLinkChecker(fotoArr){
@@ -110,28 +128,9 @@ function zohoLinkChecker(fotoArr){
 
 function reset(){
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
-
-    //Tekst aanpassen inputvelden
-    fline.value = instelling.begroeting1
-    sline.value = instelling.begroeting2
-    profo_.value = instelling.profo
-    naam_.value = instelling.naam
-    Taak_.value = instelling.taak
-    Mail_.value = instelling.mail
-    Banner_.value = instelling.banner_foto
-    url.value = instelling.banner_link
-
-    //Tekst aanpassen van copy-tekst
-    var Mailto = Mail.firstChild.href.split(":")[0] + ":" + Mail_.value
-    begroeting1.innerText = instelling.begroeting1
-    begroeting2.innerText = instelling.begroeting2
-    profo.firstChild.src = instelling.profo
-    naam.innerText = instelling.naam
-    Taak.innerText = instelling.taak
-    Mail.firstChild.innerText = instelling.mail
-    Mail.firstChild.href = Mailto
-    Banner.src = instelling.banner_foto
-    Banner.parentElement.parentElement.href = instelling.banner_link
+    localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
+    setValues(instelling);
+    setHTML(instelling);
 }
 
 function darkModeToggle(button){
