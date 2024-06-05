@@ -67,7 +67,14 @@ function setHTML(sItem){
     Banner.parentElement.parentElement.href = sItem.banner_link
 }
 
-window.addEventListener("load", init)
+window.addEventListener("load", init);
+document.addEventListener("DOMContentLoaded", function() {
+    inputvelden.forEach(function(input) {
+      input.addEventListener("blur", function(event) {
+        exchange();
+      });
+    });
+});
 
 function init(){
     var begroetingenInnerText = []
