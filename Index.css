@@ -9,6 +9,8 @@ body{
     padding: 10px;
     color: black;
     background-color: white;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .copyBlack{
@@ -17,6 +19,8 @@ body{
     padding: 10px;
     color: white;
     background-color: #212121;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .helpText{
