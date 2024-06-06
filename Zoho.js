@@ -110,6 +110,7 @@ function init(){
     }
     setValues(instelling);
     setHTML(instelling);
+    mailChecker();
 }
 
 function copy(){
@@ -166,10 +167,8 @@ function zohoLinkChecker(fotoArr){
 function hiddenchecker(){
     for(var i = 0; i < errorText.length; i++){
         (errorText[i].hidden ? hiddenBool = true : hiddenBool = false)
-        //console.log(hiddenBool, "error", errorText[i].hidden)
         if(!hiddenBool) {i = errorText.length}
     }
-    console.log(hiddenBool)
 }
 
 function reset(){
