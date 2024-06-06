@@ -111,6 +111,7 @@ function init(){
     setValues(instelling);
     setHTML(instelling);
     mailChecker();
+    hiddenchecker();
 }
 
 function copy(){
