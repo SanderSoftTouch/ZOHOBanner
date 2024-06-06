@@ -1,3 +1,4 @@
+//variabelen
 var kopy = document.getElementById("kopy");
 var begroetingen = document.getElementsByClassName("begroeting");
 var begroeting1 = document.getElementById("begroeting1");
@@ -8,8 +9,6 @@ var Taak = document.getElementById("Taak");
 var Mail = document.getElementById("Mail");
 var Banner = document.getElementById("Banner");
 var line = document.getElementById("line");
-//var fline = document.getElementById("fline");
-//var sline = document.getElementById("sline");
 var profo_ = document.getElementById("profo_");
 var naam_ = document.getElementById("naam_");
 var Taak_ = document.getElementById("Taak_");
@@ -22,11 +21,10 @@ var errorText = document.getElementsByClassName("errorText");
 var hiddenBool = true;
 let instelling;
 
+//instellingobject aanmaken
 class storageItem {
     constructor(begroetingen, profo, naam, taak, mail, banner_foto, banner_url) {
         this.begroetingen = begroetingen;
-        //this.begroeting1 = begroeting1; begroeting1, begroeting2, 
-        //this.begroeting2 = begroeting2;
         this.profo = profo;
         this.naam = naam;
         this.taak = taak;
@@ -39,14 +37,11 @@ class storageItem {
 //Tekst aanpassen inputvelden
 function setValues(sItem){
     line.value = sItem.begroetingen.join("\n")
-    //fline.value = sItem.begroeting1
-    //sline.value = sItem.begroeting2
     profo_.value = sItem.profo
     naam_.value = sItem.naam
     Taak_.value = sItem.taak
     Mail_.value = sItem.mail
     Banner_.value = sItem.banner_foto
-    //checkLink(sItem.banner_link)
     url.value = sItem.banner_link
 }
 
@@ -60,8 +55,6 @@ function setHTML(sItem){
         begroetingParent.innerHTML += begroetingTemplate;
         begroetingParent.children[i].innerHTML = sItem.begroetingen[i] + "<br>";
     }
-    //begroeting1.innerText = sItem.begroeting1
-    //begroeting2.innerText = sItem.begroeting2
     profo.firstChild.src = sItem.profo
     naam.innerText = sItem.naam
     Taak.innerText = sItem.taak
@@ -71,19 +64,7 @@ function setHTML(sItem){
     Banner.parentElement.parentElement.href = sItem.banner_link
 }
 
-async function checkLink(url) {
-    try {
-      let response = await fetch(url, { method: 'HEAD' });
-      if (response.ok) {
-        console.log(`Valid URL: ${url}`);
-      } else {
-        console.log(`Invalid URL: ${url}`);
-      }
-    } catch (error) {
-      console.log(`Error checking URL: ${url} - ${error}`);
-    }
-}
-
+//bij het inladen init() uitvoeren
 window.addEventListener("load", init);
 
 //input aanpassen
@@ -95,47 +76,35 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
+//de functie die word aangeroepen bij het inladen van de pagina
 function init(){
     var begroetingenInnerText = []
     for(var i = 0; i < begroetingen.length; i++){
         begroetingenInnerText.push(begroetingen[i].innerText);
     }
     if(localStorage.getItem("persoonlijkeInstelling") == null){
-        instelling = new storageItem(begroetingenInnerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href); //begroeting1.innerText, begroeting2.innerText, 
+        instelling = new storageItem(begroetingenInnerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href);
         localStorage.setItem("init_instelling", JSON.stringify(instelling));
         localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
         instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     }
     setValues(instelling);
-    setHTML(instelling);
-    mailChecker();
-    hiddenchecker();
+    exchange();
 }
 
-function copy(){
-    if(hiddenBool){
-        exchange()
-        var to_copy = kopy.outerHTML;
-        navigator.clipboard.writeText(to_copy);
-        alert("Gekopy't");
-    } else {
-        alert("Er klopt iets niet, zorg ervoor dat alle rode tekst weg is!");
-    }
-}
-
+//de functie die de values die in de html staan opslaat en in HTML omzet
 function exchange(){
     mailChecker();
     var fotoArr = [profo_.value.split("&amp;").join("&"), Banner_.value.split("&amp;").join("&")]
     fotoArr = zohoLinkChecker(fotoArr);
-    //checkLink(url.value)
     instelling = new storageItem(line.value.split("\n"), fotoArr[0], naam_.value, Taak_.value, Mail_.value, fotoArr[1], url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     setHTML(instelling);
     hiddenchecker();
 }
 
+//mailchecker toggle voor de mail te checken
 function mailChecker(){
     const validateEmail = (email) => {
         return email.match(
@@ -150,6 +119,7 @@ function mailChecker(){
     }
 }
 
+//functie die checkt of de link van de foto een zoho link is
 function zohoLinkChecker(fotoArr){
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
     var old_fotoArr = [instelling.profo, instelling.banner_foto]
@@ -165,6 +135,7 @@ function zohoLinkChecker(fotoArr){
     return fotoArr
 }
 
+//functie die controleert of er nog errorvakken actief zijn
 function hiddenchecker(){
     for(var i = 0; i < errorText.length; i++){
         (errorText[i].hidden ? hiddenBool = true : hiddenBool = false)
@@ -172,6 +143,19 @@ function hiddenchecker(){
     }
 }
 
+//copy knop functie
+function copy(){
+    if(hiddenBool){
+        exchange()
+        var to_copy = kopy.outerHTML;
+        navigator.clipboard.writeText(to_copy);
+        alert("Gekopy't");
+    } else {
+        alert("Er klopt iets niet, zorg ervoor dat alle rode tekst weg is!");
+    }
+}
+
+//reset knop functie
 function reset(){
     instelling = JSON.parse(localStorage.getItem("init_instelling"));
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
@@ -182,6 +166,7 @@ function reset(){
     }
 }
 
+//darkmode switch functie
 function darkModeToggle(button){
     var toggleMode = button.firstChild.classList[1].split("-");
     var toggleResult;
@@ -200,3 +185,16 @@ function darkModeToggle(button){
     kopy.classList.add(darkClass);
 }
 
+/* niet gebruikt
+async function checkLink(url) {
+    try {
+      let response = await fetch(url, { method: 'HEAD' });
+      if (response.ok) {
+        console.log(`Valid URL: ${url}`);
+      } else {
+        console.log(`Invalid URL: ${url}`);
+      }
+    } catch (error) {
+      console.log(`Error checking URL: ${url} - ${error}`);
+    }
+}*/
