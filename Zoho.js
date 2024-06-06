@@ -18,6 +18,7 @@ var Banner_ = document.getElementById("Banner_");
 var url = document.getElementById("url");
 var inputvelden = [line, profo_, naam_, Taak_, Mail_, Banner_, url];
 var checkers = document.getElementsByClassName("check");
+var errorText = document.getElementsByClassName("errorText");
 let instelling;
 
 class storageItem {
@@ -44,6 +45,7 @@ function setValues(sItem){
     Taak_.value = sItem.taak
     Mail_.value = sItem.mail
     Banner_.value = sItem.banner_foto
+    //checkLink(sItem.banner_link)
     url.value = sItem.banner_link
 }
 
@@ -82,6 +84,8 @@ async function checkLink(url) {
 }
 
 window.addEventListener("load", init);
+
+//input aanpassen
 document.addEventListener("DOMContentLoaded", function() {
     inputvelden.forEach(function(input) {
       input.addEventListener("input", function(event) {
@@ -115,11 +119,27 @@ function copy(){
 }
 
 function exchange(){
+    mailChecker();
     var fotoArr = [profo_.value.split("&amp;").join("&"), Banner_.value.split("&amp;").join("&")]
-    fotoArr = zohoLinkChecker(fotoArr)
+    fotoArr = zohoLinkChecker(fotoArr);
+    checkLink(url.value)
     instelling = new storageItem(line.value.split("\n"), fotoArr[0], naam_.value, Taak_.value, Mail_.value, fotoArr[1], url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     setHTML(instelling);
+}
+
+function mailChecker(){
+    const validateEmail = (email) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+      };
+
+    if(validateEmail(Mail_.value)){
+        errorText[0].hidden = true
+    } else{
+        errorText[0].hidden = false
+    }
 }
 
 function zohoLinkChecker(fotoArr){
