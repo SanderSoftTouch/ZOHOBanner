@@ -19,6 +19,7 @@ var url = document.getElementById("url");
 var inputvelden = [line, profo_, naam_, Taak_, Mail_, Banner_, url];
 var checkers = document.getElementsByClassName("check");
 var errorText = document.getElementsByClassName("errorText");
+var hiddenBool = true;
 let instelling;
 
 class storageItem {
@@ -112,20 +113,25 @@ function init(){
 }
 
 function copy(){
-    exchange()
-    var to_copy = kopy.outerHTML;
-    navigator.clipboard.writeText(to_copy);
-    alert("Gekopy't");
+    if(hiddenBool){
+        exchange()
+        var to_copy = kopy.outerHTML;
+        navigator.clipboard.writeText(to_copy);
+        alert("Gekopy't");
+    } else {
+        alert("Er klopt iets niet, zorg ervoor dat alle rode tekst weg is!");
+    }
 }
 
 function exchange(){
     mailChecker();
     var fotoArr = [profo_.value.split("&amp;").join("&"), Banner_.value.split("&amp;").join("&")]
     fotoArr = zohoLinkChecker(fotoArr);
-    checkLink(url.value)
+    //checkLink(url.value)
     instelling = new storageItem(line.value.split("\n"), fotoArr[0], naam_.value, Taak_.value, Mail_.value, fotoArr[1], url.value) //fline.value, sline.value, 
     localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling))
     setHTML(instelling);
+    hiddenchecker();
 }
 
 function mailChecker(){
@@ -155,6 +161,15 @@ function zohoLinkChecker(fotoArr){
         }
     }
     return fotoArr
+}
+
+function hiddenchecker(){
+    for(var i = 0; i < errorText.length; i++){
+        (errorText[i].hidden ? hiddenBool = true : hiddenBool = false)
+        //console.log(hiddenBool, "error", errorText[i].hidden)
+        if(!hiddenBool) {i = errorText.length}
+    }
+    console.log(hiddenBool)
 }
 
 function reset(){
