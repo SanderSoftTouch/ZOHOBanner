@@ -55,7 +55,7 @@ function setHTML(sItem){
         begroetingParent.innerHTML += begroetingTemplate;
         begroetingParent.children[i].innerHTML = sItem.begroetingen[i] + "<br>";
     }
-    profo.firstChild.src = sItem.profo
+    profo.src = sItem.profo
     naam.innerText = sItem.naam
     Taak.innerText = sItem.taak
     Mail.firstChild.innerText = sItem.mail
@@ -83,7 +83,7 @@ function init(){
         begroetingenInnerText.push(begroetingen[i].innerText);
     }
     if(localStorage.getItem("persoonlijkeInstelling") == null){
-        instelling = new storageItem(begroetingenInnerText, profo.firstChild.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href);
+        instelling = new storageItem(begroetingenInnerText, profo.src, naam.innerText, Taak.innerText, Mail.firstChild.innerText, Banner.src, Banner.parentElement.parentElement.parentElement.href);
         localStorage.setItem("init_instelling", JSON.stringify(instelling));
         localStorage.setItem("persoonlijkeInstelling", JSON.stringify(instelling));
     } else {
