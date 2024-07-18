@@ -11,6 +11,7 @@ body{
     background-color: white;
     max-height: 450px;
     overflow-y: auto;
+    height: auto;
 }
 
 .copyBlack{

@@ -61,7 +61,7 @@ function setHTML(sItem){
     Mail.firstChild.innerText = sItem.mail
     Mail.firstChild.href = Mailto
     Banner.src = sItem.banner_foto
-    Banner.parentElement.parentElement.href = sItem.banner_link
+    Banner.parentElement.parentElement.parentElement.href = sItem.banner_link
 }
 
 //bij het inladen init() uitvoeren
@@ -89,6 +89,7 @@ function init(){
     } else {
         instelling = JSON.parse(localStorage.getItem("persoonlijkeInstelling"));
     }
+    console.log(Banner.parentElement.parentElement.parentElement.href)
     setValues(instelling);
     exchange();
 }
